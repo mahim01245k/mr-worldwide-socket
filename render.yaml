@@ -1,0 +1,17 @@
+# socket-server/render.yaml
+# Drop this file in the socket-server/ folder and connect that folder to Render
+
+services:
+  - type: web
+    name: mr-worldwide-socket
+    env: node
+    region: oregon
+    plan: free
+    buildCommand: npm install
+    startCommand: node index.js
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: ALLOWED_ORIGIN
+        sync: false   # Set this manually in Render dashboard to your Vercel URL
